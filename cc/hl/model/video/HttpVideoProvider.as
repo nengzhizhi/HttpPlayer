@@ -112,13 +112,31 @@
 					else{ // 根据文件位置查找
 						if (nsTmp.canSearchByte()) {
 							bytes = nsTmp.searchByte(start);
+							this._videoInfo.getPartVideoInfo(function(arg1:PartVideoInfo):void{
+								nsTmp.load(arg1, play, startTime);
+							}, index, bytes);
 						}
 						else{
 							this._videoInfo.getPartVideoInfo(function (arg1:PartVideoInfo):void{
+								var bytes:* = 0;
+								var pvi:* = arg1;
+
 								if(nsTmp.ready){
-									
+									bytes = nsTmp.searchByte(startTime);
+									if(bytes > 0){
+										load(index, startTime, play);
+									}	
+								}else {
+									nsTmp.addEventListener("NS_READY", function():void{
+										nsTmp.removeEventListener("NS_READY", arguments.callee);
+										var _local2:int = nsTmp.searchByte(startTime);
+										if (_local2 > 0){
+											load(index, startTime, play);
+										};
+									});
+									nsTmp.load(pvi, play, startTime);
 								}
-							});
+							}, index, 0);
 						}
 					}
 				}
