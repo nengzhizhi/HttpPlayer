@@ -114,7 +114,11 @@
 							bytes = nsTmp.searchByte(start);
 						}
 						else{
-
+							this._videoInfo.getPartVideoInfo(function (arg1:PartVideoInfo):void{
+								if(nsTmp.ready){
+									
+								}
+							});
 						}
 					}
 				}
