@@ -60,6 +60,7 @@
 				/**
 				 *此处按照hd3->hd2->mp4->flv的顺序选择
 				**/
+
 				for(_loc2_ in youkuData.stream_ids){
 					if(YOUKU_CLEAR_TYPE.indexOf(_loc2_) < YOUKU_CLEAR_TYPE.indexOf(_loc1_)){
 						_loc1_ = _loc2_;
@@ -94,6 +95,9 @@
 		 * @param startTime
 		 * @return 用partNetStreasm的VideoInfo做参数，回调f
 		**/
+
+		//FIXME 
+		//当只有一段码流时，开始定位会出现问题
 
 		override public function getPartVideoInfo(f:Function, index:int, startTime:Number=0):void{
 			var loader:BlockLoader = null;

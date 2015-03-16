@@ -32,7 +32,7 @@
 
 			for(var i:int = 0; i < _videoInfo.count; i++){
 				if( _videoInfo.fileType == "mp4"){
-					//this.nss[i] = new MP4PartNetStream(this.nc);
+					this.nss[i] = new MP4PartNetStream(this.nc);
 				}
 				else{
 					this.nss[i] = new FLVPartNetStream(this.nc);
@@ -80,6 +80,8 @@
 		**/
 		private function load(index:int, startTime:Number=0, play:Boolean=false):void{
 
+			var bytes:* = 0;
+
 			if(index >=0 && index < this._videoInfo.count){
 				if(this.currentLoad != index){
 					if(this.currentLoad != -1){ //当前有正在载入的partNetStream停止载入
@@ -109,7 +111,7 @@
 					}
 					else{ // 根据文件位置查找
 						if (nsTmp.canSearchByte()) {
-
+							bytes = nsTmp.searchByte(start);
 						}
 						else{
 
@@ -154,6 +156,7 @@
 
 			var partNetStream:PartNetStream = this.nss[index];
 			startTime = partNetStream.getRealSeekTime(startTime);
+
 
 			if(this._videoInfo.disableSeekJump){
 				if(partNetStream.ready){ //全部载入成功可以自由缓存

@@ -24,7 +24,7 @@
 			var mainLayer:HttpPlayer = param1.getBody() as HttpPlayer;
 			this.initLayer(mainLayer);
 
-			sendNotification(Order.Video_Start_Request, {"vid":"XODg1OTc2MzUy", "type":"youku", "startTime":0});
+			sendNotification(Order.Video_Start_Request, {"vid":"XOTEyNjE5NDE2", "type":"youku", "startTime":0});
 			sendNotification(Order.ControlBar_Show_Request, null);
 			sendNotification(Order.Danmu_Init_Request, null);
 		}
